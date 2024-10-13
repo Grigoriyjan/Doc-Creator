@@ -34,9 +34,12 @@ sign_arr = [
         'path':'app\data\image\sign_2.png'
     }]
 
+def load_json_file(path):
+    with open(path,'r', encoding="utf-8") as file:
+        return json.load(file)
+
 def convert_number_to_words(number):
     try:
-        # Преобразуйте число в слова
         words = num2words(number, lang='ru')
         words = words.capitalize()
         return words
@@ -62,15 +65,18 @@ def name_pdf(data,docName, docType):
     string = string.replace(" ", "_")
     return '\ ' + string + '.pdf'
 
+def save_doc(data, docType):
+    storage = load_json_file('app\data\JSON\docHistory.json')
+    print(storage)
+    data.extend([len(storage['docs']), date])
+    storage['docs'].append(data)
+    with open("app\data\JSON\docHistory.json", "w") as file:
+        json.dump(storage, file, indent=4)
 def fillData(data, docType):
     local_data = None 
     
-    with open('app\data\JSON\props.json','r', encoding="utf-8") as file:
-        props = json.load(file)['props']
-        print(props)
-    
-    print(props)
-    
+    props = load_json_file('app\data\JSON\props.json')['props']
+    save_doc(data, docType)
     if docType == 0:
         local_data = [
             {'font-size':13, 'font':'Arial-Thick', 'x':60, 'y':760, 'val':f'Счет на оплату №{data[1]} от {date["currDay"]} {date["currMoth"]} {date["currYear"]}г.', 'type': 1},
@@ -111,8 +117,9 @@ def getTitle(i, which):
 def preparePdf(data, docName, docType,path):
     path = path + name_pdf(data, docName, docType) 
     c = canvas.Canvas(path, pagesize=A4)
-    
     data = fillData(data, docType)
+    
+    
     
     for item in data:
         drawPDF(c, item)
