@@ -12,7 +12,7 @@ mothArr = ['января', 'февраля','марта','апреля','мая'
 
 date = {
     'currDay': str(datetime.date.today().day),
-    'currMoth': mothArr[int(datetime.date.today().month) - 1],
+    'currMoth': int(datetime.date.today().month),
     'currYear': str(datetime.date.today().year)
 }
 
@@ -79,7 +79,7 @@ def fillData(data, docType):
     save_doc(data, docType)
     if docType == 0:
         local_data = [
-            {'font-size':13, 'font':'Arial-Thick', 'x':60, 'y':760, 'val':f'Счет на оплату №{data[1]} от {date["currDay"]} {date["currMoth"]} {date["currYear"]}г.', 'type': 1},
+            {'font-size':13, 'font':'Arial-Thick', 'x':60, 'y':760, 'val':f'Счет на оплату №{data[1]} от {date["currDay"]} {mothArr[date["currMoth"] - 1]} {date["currYear"]}г.', 'type': 1},
             {'font-size':13, 'font':'Arial', 'x':60, 'y':538, 'val':'Покупатель ', 'type':1},
             {'font-size':13, 'font':'Arial', 'x':60, 'y':563, 'val':'Склад ', 'type':1},
             {'font-size':13, 'font':'Arial', 'x':60, 'y':580, 'val':'Поставщик ', 'type':1},
