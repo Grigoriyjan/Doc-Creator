@@ -20,7 +20,6 @@ def drawPastDocs(root):
         ttk.Label(root, text=doc_types[doc_list[i][0]]).grid(row=i + 3, column=0, padx=70, pady=15)
         for j in range(5):
             ttk.Label(root, text=doc_list[i][j + 1]).grid(row=i + 3, column=j + 1, padx=70, pady=15)
-            
-        date = doc_list[i][7]
+        date = doc_list[i][len(doc_list[i]) - 1]
         ttk.Label(root, text=f"{date['currDay']}.{date['currMoth']}.{date['currYear']}").grid(row=i + 3, column=j, padx=70, pady=15)
     

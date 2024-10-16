@@ -21,11 +21,15 @@ main_window.iconbitmap('app\data\docCreatorIco.ico')
 
 def prepareWindow(index):
     uc.docType = index
-    uc.Start()
+    uc.Start(main_window)
+
+def updateList():
+    dh.drawPastDocs(main_window)
+
+updateList()
 
 for index in range(max_docTypes):
     ttk.Button(main_window, text=doc_types[index], command=lambda i=index: prepareWindow(i)).grid(row=1, column=index, padx=15, pady=15)
-    
-dh.drawPastDocs(main_window)
+
 
 main_window.mainloop()

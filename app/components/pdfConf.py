@@ -1,11 +1,12 @@
 import re
 
 import json
-from num2words import num2words
+import subprocess
 import datetime
+from docHistory import drawPastDocs
+from num2words import num2words
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-import subprocess
 from createPdf import drawPDF
 
 mothArr = ['января', 'февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря']
@@ -67,12 +68,12 @@ def name_pdf(data,docName, docType):
 
 def save_doc(data, docType):
     storage = load_json_file('app\data\JSON\docHistory.json')
-    print(storage)
+    data[0] = docType
     data.extend([len(storage['docs']), date])
     storage['docs'].append(data)
     with open("app\data\JSON\docHistory.json", "w") as file:
         json.dump(storage, file, indent=4)
-def fillData(data, docType):
+def fillData(data, docType, main_window):
     local_data = None 
     
     props = load_json_file('app\data\JSON\props.json')['props']
@@ -107,20 +108,17 @@ def fillData(data, docType):
             {'font-size':11,'font':'Arial', 'x':85, 'y':180, 'val':f'({convert_number_to_words(data[3])}) сом', 'type':1},
             {'font-size':11,'font':'Arial', 'x':90, 'y':70, 'val':'С уважением,', 'type':1},
             {'font-size':11,'font':'Arial', 'x':90, 'y':55, 'val':getTitle(data[0], "chief"), 'type':1},
-            {'x':200, 'y':0, 'val':data[0], 'type':4, 'arr':sign_arr, 'place':data[4]}
-            
+            {'x':200, 'y':0, 'val':data[0], 'type':4, 'arr':sign_arr, 'place':data[4]}   
         ]
+    drawPastDocs(main_window)
     return local_data
 def getTitle(i, which):
     return kp_title[i][which]
 
-def preparePdf(data, docName, docType,path):
+def preparePdf(data, docName, docType,path, main_window):
     path = path + name_pdf(data, docName, docType) 
     c = canvas.Canvas(path, pagesize=A4)
-    data = fillData(data, docType)
-    
-    
-    
+    data = fillData(data, docType, main_window)
     for item in data:
         drawPDF(c, item)
     

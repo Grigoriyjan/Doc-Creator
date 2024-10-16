@@ -5,6 +5,8 @@ import tkinter as tk
 import uiElems as ue
 
 
+main_window = None
+
 def on_checkbutton_toggle(var):
     var.set(0 if var.get() == 1 else 1)
     global checkBtnVar
@@ -43,7 +45,7 @@ def configurePdf(docData):
             data.append(item.get() if index > 0 else int(item.current()))
         except AttributeError:
             data.append(checkBtnVar)
-    pdfConf.preparePdf(data, title[docType], docType, path)
+    pdfConf.preparePdf(data, title[docType], docType, path, main_window)
 
 def drawUi(r):
     docData = []
@@ -54,7 +56,9 @@ def drawUi(r):
     createBtn = ttk.Button(r,command=lambda: configurePdf(docData), text="Создать")
     createBtn.grid(row=index + 1, column=2, padx=15, pady=15)
 
-def Start():
+def Start(main_win):
+    global main_window
+    main_window = main_win
     root = tk.Tk()
     root.title(title[docType])
     root.geometry("400x500")
