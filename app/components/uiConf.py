@@ -14,7 +14,7 @@ def on_checkbutton_toggle(var):
 
 docConfigArr = [
     [
-        {'val':None, 'name':"Реквизит", 'width':35, 'type':2, 'props':["ИП Алапаев Комерческий Банк","Эмин и Ко Оптима", "ИП Алапаев Оптима Банк"]},
+        {'val':None, 'name':"Реквизит", 'width':35, 'type':2, 'props':["ИП Алапаев Комерческий Банк","Эмин и Ко"]},
         {'val':None, 'name':"Номер накладной",'validate':'key', 'width':35,'type':1},
         {'val':None, 'name':"Имя клиента", 'validate':None,  'width':35,'type':1},
         {'val':None, 'name':"Конечная стоимость",'validate':'key', 'width':35,'type':1},
@@ -22,7 +22,7 @@ docConfigArr = [
         {'val':None, 'name':"Поставить печать", 'width':30,'type':3, 'func': on_checkbutton_toggle},
     ],
     [
-        {'val':None, 'name':"Реквизит", 'width':35, 'type':2, 'props':["ИП Алапаев","Эмин и Ко Оптима"]},
+        {'val':None, 'name':"Реквизит", 'width':35, 'type':2, 'props':["ИП Алапаев","Эмин и Ко"]},
         {'val':None, 'name':"Номер накладной",'validate':'key', 'width':35,'type':1},
         {'val':None, 'name':"Предложение",'validate':None, 'width':35,'type':1},
         {'val':None, 'name':"Конечная стоимость",'validate':'key', 'width':35,'type':1},

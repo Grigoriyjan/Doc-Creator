@@ -68,8 +68,8 @@ def name_pdf(data,docName, docType):
 
 def save_doc(data, docType):
     storage = load_json_file('app\data\JSON\docHistory.json')
-    data[0] = docType
-    data.extend([len(storage['docs']), date])
+    common = {"date":date, "docType":docType}
+    data.extend([len(storage['docs']), common])
     storage['docs'].append(data)
     with open("app\data\JSON\docHistory.json", "w") as file:
         json.dump(storage, file, indent=4)

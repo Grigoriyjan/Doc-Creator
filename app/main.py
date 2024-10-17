@@ -15,7 +15,7 @@ doc_types = ['Счет на ОПЛ', 'КП']
 
 main_window = Tk()
 main_window.title("Document Creator V2")
-main_window.geometry("1024x860")
+main_window.geometry("1224x860")
 
 main_window.iconbitmap('app\data\docCreatorIco.ico')
 
