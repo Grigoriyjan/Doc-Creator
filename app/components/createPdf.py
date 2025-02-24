@@ -17,7 +17,7 @@ def drawPDF(c, data):
         for index, str in enumerate(str_arr):
             c.drawString(data['x'], data['y'] + index * data['gap'], str)
     elif data['type'] == 3:
-        c.drawImage(data['val'], data['x'], data['y'], data['width'], data['height'], mask="auto")
+        c.drawImage(data['val'], data['x'], data['y'],mask="auto")
     elif data['type'] == 4:
         if data['place'] == False:
             return

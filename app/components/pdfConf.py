@@ -20,7 +20,6 @@ date = {
 kp_title = [
     {'title':'ИП Алапаев А.А.', 'chief':'Алапаев Адилет'},
     {'title':'ОсОО "Эмин и Ко"', 'chief':'Умуш Аскар'},
-    {'title':'ИП Алапаев Оптима', 'chief':'Алапаев Адилет'},
 ]
 
 sign_arr = [
@@ -98,7 +97,8 @@ def fillData(data, docType, main_window):
             create_element(13, 'Arial', 80, 150, f'{convert_number_to_words(data[3])} сом', 1),
             create_element(None, None, 60, 750, 'app\data\image\payCheckImages\Image_001.png', 3),
             create_element(None, None, 190, 65, 'app\data\image\payCheckImages\Image_003.png', 3),
-            create_element(13, 'Arial-Thick', 80, 70, 'Руководитель Бухгалтер', 1),
+            create_element(13, 'Arial-Thick', 80, 70, 'Руководитель', 1),
+            create_element(13, 'Arial-Thick', 430, 70, 'Бухгалтер', 1),
             create_element(None, None, 170, 0, data[0], 4, arr=sign_arr, place=data[5])
         ])
         
